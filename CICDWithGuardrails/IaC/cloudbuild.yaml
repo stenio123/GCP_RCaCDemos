@@ -9,9 +9,9 @@ steps:
       echo "*************************************************"
       echo "current dir: `pwd`"
       echo "contents dir: `ls`"
-      cd IaC
+      cd CICDWithGuardrails/IaC
       terraform init 
-      cd ..
+      cd ../..
 # [START tf-plan]
 - id: 'tf plan'
   name: 'hashicorp/terraform:1.3.5'
@@ -23,9 +23,9 @@ steps:
       echo "*************************************************"
       echo "current dir: `pwd`"
       echo "contents dir: `ls`"
-      cd IaC
+      cd CICDWithGuardrails/IaC
       terraform plan 
-      cd ..
+      cd ../..
 # [END tf-plan]
 
 # [START tf-apply]
@@ -39,7 +39,7 @@ steps:
       echo "*************************************************"
       echo "current dir: `pwd`"
       echo "contents dir: `ls`"
-      cd Iac
+      cd CICDWithGuardrails/Iac
       terraform apply -auto-approve
-      cd ..
+      cd ../..
 # [END tf-apply] 
