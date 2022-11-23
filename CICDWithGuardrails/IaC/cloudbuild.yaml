@@ -8,6 +8,7 @@ steps:
       echo "*************** TERRAFORM INIT ******************"
       echo "*************************************************"
       echo "current dir: `pwd`"
+      echo "contents dir: `ls`"
       cd IaC
       terraform init 
       cd ..
@@ -21,6 +22,7 @@ steps:
       echo "*************** TERRAFOM PLAN ******************"
       echo "*************************************************"
       echo "current dir: `pwd`"
+      echo "contents dir: `ls`"
       cd IaC
       terraform plan 
       cd ..
@@ -36,6 +38,7 @@ steps:
       echo "*************** TERRAFOM APPLY ******************"
       echo "*************************************************"
       echo "current dir: `pwd`"
+      echo "contents dir: `ls`"
       cd Iac
       terraform apply -auto-approve
       cd ..
