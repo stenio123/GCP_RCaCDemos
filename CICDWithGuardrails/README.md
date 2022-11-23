@@ -22,3 +22,6 @@ Steps:
 - Install Cloud Build app in the repo
 - Authorize?
 - Connect Github to Cloud Build https://cloud.google.com/architecture/managing-infrastructure-as-code#directly_connecting_cloud_build_to_your_github_repository
+
+## IaC
+Change project name in variables.tf

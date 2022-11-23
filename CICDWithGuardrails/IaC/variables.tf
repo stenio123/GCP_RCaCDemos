@@ -2,7 +2,7 @@
 
 variable "project_id" {
   type = string
-  default = "default"
+  default = "acme-confidential-data-4"
   description = "Project that has resources meeting compliance requirements."
 }
 
