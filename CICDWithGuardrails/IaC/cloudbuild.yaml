@@ -7,7 +7,10 @@ steps:
   - |
       echo "*************** TERRAFORM INIT ******************"
       echo "*************************************************"
+      echo "current dir: `pwd`"
+      cd IaC
       terraform init 
+      cd ..
 # [START tf-plan]
 - id: 'tf plan'
   name: 'hashicorp/terraform:1.3.5'
@@ -17,7 +20,10 @@ steps:
   - | 
       echo "*************** TERRAFOM PLAN ******************"
       echo "*************************************************"
+      echo "current dir: `pwd`"
+      cd IaC
       terraform plan 
+      cd ..
 # [END tf-plan]
 
 # [START tf-apply]
@@ -29,5 +35,8 @@ steps:
   - | 
       echo "*************** TERRAFOM APPLY ******************"
       echo "*************************************************"
+      echo "current dir: `pwd`"
+      cd Iac
       terraform apply -auto-approve
+      cd ..
 # [END tf-apply] 
