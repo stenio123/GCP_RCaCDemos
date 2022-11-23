@@ -8,16 +8,7 @@ data "google_project" "my_project" {
     project_id = var.project_id
 }
 
-data "google_compute_network" "my_network" {
-  name = var.network_name
-  project = data.google_project.my_project.number
-}
-
 ## Simple VM. 
-resource "google_service_account" "default" {
-  account_id   = "vm-service-account"
-  display_name = "Service Account"
-}
 
 resource "google_compute_instance" "default" {
   name         = "test"
@@ -36,12 +27,25 @@ resource "google_compute_instance" "default" {
   }
 
   network_interface {
-    network = data.google_compute_network.my_network.id
+    network = google_compute_subnetwork.private-subnetwork.id
   }
 
-  service_account {
-    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = google_service_account.default.email
-    scopes = ["cloud-platform"]
+}
+
+
+resource "google_compute_subnetwork" "private-subnetwork" {
+  name          = "test-subnetwork"
+  ip_cidr_range = "10.2.0.0/16"
+  region        = "us-central1"
+  network       = google_compute_network.custom-test.id
+  secondary_ip_range {
+    range_name    = "tf-test-secondary-range-update1"
+    ip_cidr_range = "192.168.10.0/24"
   }
+}
+
+resource "google_compute_network" "custom-test" {
+  name                    = "test-network"
+  auto_create_subnetworks = false
+project = data.google_project.my_project.number
 }

@@ -4,6 +4,7 @@
 
 Storing cloudbuild.yaml on the repo, to allow CICD pipeline to run multiple configurations.
 
+Considerations of where to store state file! CloudBuild applies, how to destroy afterwards
 
 ## CICD
 - trigger build using service account - needs to have sufficient permission to create resources
