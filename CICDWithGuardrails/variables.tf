@@ -28,6 +28,6 @@ variable "terraform_bucket_name" {
 }
 
 variable "terraform_bucket_location" {
-    type = "string"
+    type = string
     default = "US-CENTRAL1"
 }

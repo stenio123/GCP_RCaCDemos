@@ -11,6 +11,11 @@ You need to have the Cloud Build Editor (roles/cloudbuild.builds.editor) role in
 
 https://github.com/marketplace/google-cloud-build
 
+Steps:
+- Enable Cloud Build through Github Marketplace for desired git repos (or all)
+- Connect Github repo to cloud build and authorize
+- Execute terraform
+
 
 ### GitHub Configuration
 - Fork or clone repo

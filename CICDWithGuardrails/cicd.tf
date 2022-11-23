@@ -3,12 +3,12 @@
 
 resource "google_cloudbuild_trigger" "include-build-logs-trigger" {
   location = "us-central1"
-  filename = "cloudbuild.yaml"
+  filename = "IaC/cloudbuild.yaml"
   name     = "include-build-logs-trigger"
 
   github {
     owner = "stenio123"
-    name  = "CICDWithGuardrails"
+    name  = "GCP_RCaCDemos"
     push {
       branch = "^main$"
     }
