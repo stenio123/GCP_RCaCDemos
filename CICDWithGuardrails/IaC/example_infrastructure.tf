@@ -10,12 +10,12 @@ data "google_project" "my_project" {
 
 data "google_compute_network" "my_network" {
   name = var.network_name
-  project = google_project.my_project
+  project = data.google_project.my_project.number
 }
 
 ## Simple VM. 
 resource "google_service_account" "default" {
-  account_id   = "service_account_id"
+  account_id   = "vm-service-account"
   display_name = "Service Account"
 }
 
@@ -36,7 +36,7 @@ resource "google_compute_instance" "default" {
   }
 
   network_interface {
-    network = google_compute_network.my_network
+    network = data.google_compute_network.my_network.id
   }
 
   service_account {
