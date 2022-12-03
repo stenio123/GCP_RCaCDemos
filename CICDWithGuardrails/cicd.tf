@@ -3,7 +3,7 @@
 
 resource "google_cloudbuild_trigger" "include-build-logs-trigger" {
   location = "us-central1"
-  filename = "IaC/cloudbuild.yaml"
+  filename = "CICDWithGuardrails/IaC/cloudbuild.yaml"
   name     = "include-build-logs-trigger"
 
   github {

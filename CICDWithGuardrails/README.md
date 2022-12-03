@@ -8,19 +8,16 @@ For convenience, in this demo both the code to configure the CICD and the deploy
 
 
 ## Steps to deploy demo:
-### CICD
-
-- Enable Cloud Build through Github Marketplace for desired git repos (or all)
-- Connect Github repo to cloud build and authorize
+### Initial Configuration
+- On Github, fork the repository to your account
+- On Github, enable Cloud Build through Github Marketplace for the forked repo (or all)
+- On GCP Cloud Build, click on "Triggers", select Github as "Source"
+- Click "Authorize", enter password, select your account and forked repo
 - On GCP console, git clone git repo
 - Update IaC/variables.tf with existing project id
 
-### GitHub Configuration
-- Install Cloud Build app in the repo
-- Authorize
-- Connect Github to Cloud Build https://cloud.google.com/architecture/managing-infrastructure-as-code#directly_connecting_cloud_build_to_your_github_repository'
-
 ### Deploy CICD pipeline
+- Update CICDWithGuardrails/cicd.tf to point to your forked git repo 
 - On GCP console, execute `terraform init; terraform apply`
 - To trigger IaC build, make a change to a branch of IaC, push and merge to main.
 
@@ -32,3 +29,9 @@ For convenience, in this demo both the code to configure the CICD and the deploy
 ## Notes
 - Github is used as the source control in this demo, but any git repository supported by Cloud build should work
 - In this demo, the terraform state file is stored as file in cloud console. In production the best practice is to store it in a Object Store bucket.
+
+## Troubleshooting
+
+- Error "│ Error: Error creating Trigger: googleapi: Error 400: Repository mapping does not exist. Please visit https://console.cloud.google.com/cloud-build/triggers/connect?project=1005998595697 to connect a repository to your project"
+
+You have not setup the connection between Github and Cloud Build. Check above instructions and follow steps.
