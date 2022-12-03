@@ -2,7 +2,7 @@
 
 terraform {
  backend "gcs" {
-   bucket  = var.iac_state_bucket_name
+   bucket  = "rcacdemo-bucket-tfstate"
    prefix  = "terraform/state"
  }
 }
