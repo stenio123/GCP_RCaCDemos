@@ -32,7 +32,7 @@ resource "google_compute_instance" "default" {
   }
 
   network_interface {
-    network = google_compute_subnetwork.private-subnetwork.id
+    subnetwork = google_compute_subnetwork.private-subnetwork.id
   }
 
 }

@@ -15,7 +15,7 @@ For convenience, in this demo both the code to configure the CICD and the deploy
 - Click "Authorize", enter password, select your account and forked repo
 - On GCP console, git clone git repo
 - Update variables.tf "iac_state_bucket_name" with valid name
-- Update IaC/variables.tf with "iac_state_bucket_name" and existing project id in your account. You will need to commit and push to your forked/IaC repo
+- Update IaC/variables.tf with existing "project_id", and IaC/example_infrastructure.tf with same bucket name you use in "iac_state_bucket_name". You will need to commit and push to your forked/IaC repo
 
 ### IAM permissions
 - On IAM, search for the Cloud Build Service Account, and add "Compute Engine Admin", "Network Admin" and "Object Storage Admin". Check notes for link documenting more refined permission control
