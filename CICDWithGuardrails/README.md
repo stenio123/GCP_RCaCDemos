@@ -1,28 +1,34 @@
-1. Specify project where resources governed by compliance controls will exist
-2. Within this project, specify the network
-3. (Optional) Provide a name for the Object Storage bucket that will store terraform state
 
-Storing cloudbuild.yaml on the repo, to allow CICD pipeline to run multiple configurations.
+# Demo - IaC CICD with Guardrails
 
-Considerations of where to store state file! CloudBuild applies, how to destroy afterwards
+## Overview
+This demo has two main components - the GCP side and the Github side. **GCP** will be responsible for the CICD and guardrail automation, using CloudBuild and Cloudfunction, while **Github** will be responsible for storing the IaC and guardrail controls. 
 
-## CICD
-- trigger build using service account - needs to have sufficient permission to create resources
-You need to have the Cloud Build Editor (roles/cloudbuild.builds.editor) role in your project to create triggers.
+For convenience, in this demo both the code to configure the CICD and the deployed infrastructure are in the same git repository. In real world settings, one would probably have two separate git repos. The IaC code is found in the "IaC" folder, and it is referred in cicd.tf. You can find examples of how to point to a remote cloudbuild.yaml [here](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloudbuild_trigger#example-usage---cloudbuild-trigger-pubsub-config)
 
-https://github.com/marketplace/google-cloud-build
 
-Steps:
+## Steps to deploy demo:
+### CICD
+
 - Enable Cloud Build through Github Marketplace for desired git repos (or all)
 - Connect Github repo to cloud build and authorize
-- Execute terraform
-
+- On GCP console, git clone git repo
+- Update IaC/variables.tf with existing project id
 
 ### GitHub Configuration
-- Fork or clone repo
 - Install Cloud Build app in the repo
-- Authorize?
-- Connect Github to Cloud Build https://cloud.google.com/architecture/managing-infrastructure-as-code#directly_connecting_cloud_build_to_your_github_repository
+- Authorize
+- Connect Github to Cloud Build https://cloud.google.com/architecture/managing-infrastructure-as-code#directly_connecting_cloud_build_to_your_github_repository'
 
-## IaC
-Change project name in variables.tf
+### Deploy CICD pipeline
+- On GCP console, execute `terraform init; terraform apply`
+- To trigger IaC build, make a change to a branch of IaC, push and merge to main.
+
+### Destroying infrastructure
+- To destroy IaC, comment all code, push and merge
+- To destroy CICD pipeline, on GCP console execute `terraform destroy`
+
+
+## Notes
+- Github is used as the source control in this demo, but any git repository supported by Cloud build should work
+- In this demo, the terraform state file is stored as file in cloud console. In production the best practice is to store it in a Object Store bucket.
