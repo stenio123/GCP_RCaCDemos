@@ -9,7 +9,7 @@ data "google_project" "my_project" {
 }
 
 ## Simple VM. 
-
+/**
 resource "google_compute_instance" "default" {
   name         = "test"
   machine_type = "e2-medium"
@@ -49,4 +49,4 @@ resource "google_compute_network" "custom-test" {
   name                    = "test-network"
   auto_create_subnetworks = false
 project = data.google_project.my_project.number
-}
+}*/
