@@ -25,7 +25,7 @@ For convenience, in this demo both the code to configure the CICD and the deploy
 ### Destroying infrastructure
 - To destroy IaC, comment all code, push and merge
 - To destroy CICD pipeline, on GCP console execute `terraform destroy`
-
+.
 
 ## Notes
 - Cloud Build IAM permissions are controle through [Cloud Build Service Account](https://cloud.google.com/build/docs/securing-builds/configure-access-for-cloud-build-service-account?_ga=2.239260227.-1197172919.1670105530)
