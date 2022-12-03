@@ -13,9 +13,12 @@ For convenience, in this demo both the code to configure the CICD and the deploy
 - On Github, enable Cloud Build through Github Marketplace for the forked repo (or all)
 - On GCP Cloud Build, click on "Triggers", select Github as "Source"
 - Click "Authorize", enter password, select your account and forked repo
-- On Cloud Build "settings", enable "Compute Engine Admin". Check notes for link documenting more refined permission control
 - On GCP console, git clone git repo
-- Update IaC/variables.tf with existing project id
+- Update variables.tf "iac_state_bucket_name" with valid name
+- Update IaC/variables.tf with "iac_state_bucket_name" and existing project id in your account. You will need to commit and push to your forked/IaC repo
+
+### IAM permissions
+- On IAM, search for the Cloud Build Service Account, and add "Compute Engine Admin", "Network Admin" and "Object Storage Admin". Check notes for link documenting more refined permission control
 
 ### Deploy CICD pipeline
 - Update CICDWithGuardrails/cicd.tf to point to your forked git repo 
@@ -30,7 +33,10 @@ For convenience, in this demo both the code to configure the CICD and the deploy
 ## Notes
 - Cloud Build IAM permissions are controle through [Cloud Build Service Account](https://cloud.google.com/build/docs/securing-builds/configure-access-for-cloud-build-service-account?_ga=2.239260227.-1197172919.1670105530)
 - Github is used as the source control in this demo, but any git repository supported by Cloud build should work
-- In this demo, the terraform state file is stored as file in cloud console. In production the best practice is to store it in a Object Store bucket.
+
+## Improvements needed
+- Store state of CICD pipeline
+- Pass IaC state bucket name as env var through CICD Cloud Build
 
 ## Troubleshooting
 

@@ -1,6 +1,11 @@
 ## This file describes example infrastructure that will run in CICD
 
-
+terraform {
+ backend "gcs" {
+   bucket  = var.iac_state_bucket_name
+   prefix  = "terraform/state"
+ }
+}
 
 ### Replace with your desired GCP infrastructure
 ## Assume project and network exist to segment infrastructure that meets compliance requirements
@@ -9,7 +14,6 @@ data "google_project" "my_project" {
 }
 
 ## Simple VM. 
-/**
 resource "google_compute_instance" "default" {
   name         = "test"
   machine_type = "e2-medium"
@@ -49,4 +53,4 @@ resource "google_compute_network" "custom-test" {
   name                    = "test-network"
   auto_create_subnetworks = false
 project = data.google_project.my_project.number
-}*/
+}
