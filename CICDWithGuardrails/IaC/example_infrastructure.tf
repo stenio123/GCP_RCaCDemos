@@ -22,6 +22,13 @@ resource "google_compute_instance" "default" {
 
   tags = ["foo", "bar"]
 
+  confidential_instance_config {
+    enable_confidential_compute = true
+  }
+  scheduling {
+    on_host_maintenance = "TERMINATE"
+  }
+
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-11"
