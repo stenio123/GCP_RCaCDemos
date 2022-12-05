@@ -34,6 +34,18 @@ For convenience, in this demo both the code to configure the CICD and the deploy
 - Cloud Build IAM permissions are controle through [Cloud Build Service Account](https://cloud.google.com/build/docs/securing-builds/configure-access-for-cloud-build-service-account?_ga=2.239260227.-1197172919.1670105530)
 - Github is used as the source control in this demo, but any git repository supported by Cloud build should work
 
+### Creating and testing new policies
+```
+sudo apt-get install google-cloud-sdk-terraform-tools
+curl -L -o opa https://openpolicyagent.org/downloads/v0.47.0/opa_linux_amd64_static
+chmod 755 ./opa
+terraform init
+terraform plan --out tfplan.binary
+terraform show -json tfplan.binary > tfplan.json
+opa exec --decision terraform/analysis/authz --bundle policy/ tfplan.json
+
+```
+
 ## Improvements needed
 - Store state of CICD pipeline
 - Pass IaC state bucket name as env var through CICD Cloud Build

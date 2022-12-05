@@ -1,0 +1,986 @@
+{
+    "format_version": "1.1",
+    "terraform_version": "1.3.4",
+    "variables": {
+      "project_id": {
+        "value": "home-330415"
+      }
+    },
+    "planned_values": {
+      "root_module": {
+        "resources": [
+          {
+            "address": "google_compute_instance.default",
+            "mode": "managed",
+            "type": "google_compute_instance",
+            "name": "default",
+            "provider_name": "registry.terraform.io/hashicorp/google",
+            "schema_version": 6,
+            "values": {
+              "advanced_machine_features": [],
+              "allow_stopping_for_update": true,
+              "attached_disk": [],
+              "boot_disk": [
+                {
+                  "auto_delete": true,
+                  "disk_encryption_key_raw": null,
+                  "initialize_params": [
+                    {
+                      "image": "debian-cloud/debian-11",
+                      "labels": {
+                        "my_label": "value"
+                      }
+                    }
+                  ],
+                  "mode": "READ_WRITE"
+                }
+              ],
+              "can_ip_forward": false,
+              "deletion_protection": false,
+              "description": null,
+              "desired_status": null,
+              "enable_display": null,
+              "hostname": null,
+              "labels": null,
+              "machine_type": "e2-medium",
+              "metadata": null,
+              "metadata_startup_script": null,
+              "name": "test2",
+              "network_interface": [
+                {
+                  "access_config": [],
+                  "alias_ip_range": [],
+                  "ipv6_access_config": [],
+                  "nic_type": null,
+                  "queue_count": null,
+                  "subnetwork": "projects/home-330415/regions/us-central1/subnetworks/test-subnetwork"
+                }
+              ],
+              "resource_policies": null,
+              "scratch_disk": [],
+              "service_account": [],
+              "shielded_instance_config": [
+                {
+                  "enable_integrity_monitoring": false,
+                  "enable_secure_boot": false,
+                  "enable_vtpm": false
+                }
+              ],
+              "tags": [
+                "bar",
+                "foo"
+              ],
+              "timeouts": null,
+              "zone": "us-central1-a"
+            },
+            "sensitive_values": {
+              "advanced_machine_features": [],
+              "attached_disk": [],
+              "boot_disk": [
+                {
+                  "initialize_params": [
+                    {
+                      "labels": {}
+                    }
+                  ]
+                }
+              ],
+              "confidential_instance_config": [],
+              "guest_accelerator": [],
+              "network_interface": [
+                {
+                  "access_config": [],
+                  "alias_ip_range": [],
+                  "ipv6_access_config": []
+                }
+              ],
+              "reservation_affinity": [],
+              "scheduling": [],
+              "scratch_disk": [],
+              "service_account": [],
+              "shielded_instance_config": [
+                {}
+              ],
+              "tags": [
+                false,
+                false
+              ]
+            }
+          },
+          {
+            "address": "google_compute_network.custom-test",
+            "mode": "managed",
+            "type": "google_compute_network",
+            "name": "custom-test",
+            "provider_name": "registry.terraform.io/hashicorp/google",
+            "schema_version": 0,
+            "values": {
+              "auto_create_subnetworks": false,
+              "delete_default_routes_on_create": false,
+              "description": "",
+              "enable_ula_internal_ipv6": false,
+              "gateway_ipv4": "",
+              "id": "projects/home-330415/global/networks/test-network",
+              "internal_ipv6_range": "",
+              "mtu": 0,
+              "name": "test-network",
+              "project": "home-330415",
+              "routing_mode": "REGIONAL",
+              "self_link": "https://www.googleapis.com/compute/v1/projects/home-330415/global/networks/test-network",
+              "timeouts": null
+            },
+            "sensitive_values": {}
+          },
+          {
+            "address": "google_compute_subnetwork.private-subnetwork",
+            "mode": "managed",
+            "type": "google_compute_subnetwork",
+            "name": "private-subnetwork",
+            "provider_name": "registry.terraform.io/hashicorp/google",
+            "schema_version": 0,
+            "values": {
+              "creation_timestamp": "2022-12-03T15:19:39.841-08:00",
+              "description": "",
+              "external_ipv6_prefix": "",
+              "fingerprint": null,
+              "gateway_address": "10.2.0.1",
+              "id": "projects/home-330415/regions/us-central1/subnetworks/test-subnetwork",
+              "ip_cidr_range": "10.2.0.0/16",
+              "ipv6_access_type": "",
+              "ipv6_cidr_range": "",
+              "log_config": [],
+              "name": "test-subnetwork",
+              "network": "https://www.googleapis.com/compute/v1/projects/home-330415/global/networks/test-network",
+              "private_ip_google_access": false,
+              "private_ipv6_google_access": "DISABLE_GOOGLE_ACCESS",
+              "project": "home-330415",
+              "purpose": "PRIVATE",
+              "region": "us-central1",
+              "role": "",
+              "secondary_ip_range": [
+                {
+                  "ip_cidr_range": "192.168.10.0/24",
+                  "range_name": "tf-test-secondary-range-update1"
+                }
+              ],
+              "self_link": "https://www.googleapis.com/compute/v1/projects/home-330415/regions/us-central1/subnetworks/test-subnetwork",
+              "stack_type": "IPV4_ONLY",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "log_config": [],
+              "secondary_ip_range": [
+                {}
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "resource_changes": [
+      {
+        "address": "google_compute_instance.default",
+        "mode": "managed",
+        "type": "google_compute_instance",
+        "name": "default",
+        "provider_name": "registry.terraform.io/hashicorp/google",
+        "change": {
+          "actions": [
+            "delete",
+            "create"
+          ],
+          "before": {
+            "advanced_machine_features": [],
+            "allow_stopping_for_update": true,
+            "attached_disk": [],
+            "boot_disk": [
+              {
+                "auto_delete": true,
+                "device_name": "persistent-disk-0",
+                "disk_encryption_key_raw": "",
+                "disk_encryption_key_sha256": "",
+                "initialize_params": [
+                  {
+                    "image": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-11-bullseye-v20221102",
+                    "labels": {
+                      "my_label": "value"
+                    },
+                    "size": 10,
+                    "type": "pd-standard"
+                  }
+                ],
+                "kms_key_self_link": "",
+                "mode": "READ_WRITE",
+                "source": "https://www.googleapis.com/compute/v1/projects/home-330415/zones/us-central1-a/disks/test"
+              }
+            ],
+            "can_ip_forward": false,
+            "confidential_instance_config": [],
+            "cpu_platform": "Intel Broadwell",
+            "current_status": "RUNNING",
+            "deletion_protection": false,
+            "description": "",
+            "desired_status": null,
+            "enable_display": false,
+            "guest_accelerator": [],
+            "hostname": "",
+            "id": "projects/home-330415/zones/us-central1-a/instances/test",
+            "instance_id": "1463575062075446852",
+            "label_fingerprint": "42WmSpB8rSM=",
+            "labels": {},
+            "machine_type": "e2-medium",
+            "metadata": {},
+            "metadata_fingerprint": "ts8H3y3blXE=",
+            "metadata_startup_script": null,
+            "min_cpu_platform": "",
+            "name": "test",
+            "network_interface": [
+              {
+                "access_config": [],
+                "alias_ip_range": [],
+                "ipv6_access_config": [],
+                "ipv6_access_type": "",
+                "name": "nic0",
+                "network": "https://www.googleapis.com/compute/v1/projects/home-330415/global/networks/test-network",
+                "network_ip": "10.2.0.3",
+                "nic_type": "",
+                "queue_count": 0,
+                "stack_type": "IPV4_ONLY",
+                "subnetwork": "https://www.googleapis.com/compute/v1/projects/home-330415/regions/us-central1/subnetworks/test-subnetwork",
+                "subnetwork_project": "home-330415"
+              }
+            ],
+            "project": "home-330415",
+            "reservation_affinity": [],
+            "resource_policies": [],
+            "scheduling": [
+              {
+                "automatic_restart": true,
+                "instance_termination_action": "",
+                "min_node_cpus": 0,
+                "node_affinities": [],
+                "on_host_maintenance": "MIGRATE",
+                "preemptible": false,
+                "provisioning_model": "STANDARD"
+              }
+            ],
+            "scratch_disk": [],
+            "self_link": "https://www.googleapis.com/compute/v1/projects/home-330415/zones/us-central1-a/instances/test",
+            "service_account": [],
+            "shielded_instance_config": [
+              {
+                "enable_integrity_monitoring": true,
+                "enable_secure_boot": true,
+                "enable_vtpm": true
+              }
+            ],
+            "tags": [
+              "bar",
+              "foo"
+            ],
+            "tags_fingerprint": "1gqCRgrww4E=",
+            "timeouts": null,
+            "zone": "us-central1-a"
+          },
+          "after": {
+            "advanced_machine_features": [],
+            "allow_stopping_for_update": true,
+            "attached_disk": [],
+            "boot_disk": [
+              {
+                "auto_delete": true,
+                "disk_encryption_key_raw": null,
+                "initialize_params": [
+                  {
+                    "image": "debian-cloud/debian-11",
+                    "labels": {
+                      "my_label": "value"
+                    }
+                  }
+                ],
+                "mode": "READ_WRITE"
+              }
+            ],
+            "can_ip_forward": false,
+            "deletion_protection": false,
+            "description": null,
+            "desired_status": null,
+            "enable_display": null,
+            "hostname": null,
+            "labels": null,
+            "machine_type": "e2-medium",
+            "metadata": null,
+            "metadata_startup_script": null,
+            "name": "test2",
+            "network_interface": [
+              {
+                "access_config": [],
+                "alias_ip_range": [],
+                "ipv6_access_config": [],
+                "nic_type": null,
+                "queue_count": null,
+                "subnetwork": "projects/home-330415/regions/us-central1/subnetworks/test-subnetwork"
+              }
+            ],
+            "resource_policies": null,
+            "scratch_disk": [],
+            "service_account": [],
+            "shielded_instance_config": [
+              {
+                "enable_integrity_monitoring": false,
+                "enable_secure_boot": false,
+                "enable_vtpm": false
+              }
+            ],
+            "tags": [
+              "bar",
+              "foo"
+            ],
+            "timeouts": null,
+            "zone": "us-central1-a"
+          },
+          "after_unknown": {
+            "advanced_machine_features": [],
+            "attached_disk": [],
+            "boot_disk": [
+              {
+                "device_name": true,
+                "disk_encryption_key_sha256": true,
+                "initialize_params": [
+                  {
+                    "labels": {},
+                    "size": true,
+                    "type": true
+                  }
+                ],
+                "kms_key_self_link": true,
+                "source": true
+              }
+            ],
+            "confidential_instance_config": true,
+            "cpu_platform": true,
+            "current_status": true,
+            "guest_accelerator": true,
+            "id": true,
+            "instance_id": true,
+            "label_fingerprint": true,
+            "metadata_fingerprint": true,
+            "min_cpu_platform": true,
+            "network_interface": [
+              {
+                "access_config": [],
+                "alias_ip_range": [],
+                "ipv6_access_config": [],
+                "ipv6_access_type": true,
+                "name": true,
+                "network": true,
+                "network_ip": true,
+                "stack_type": true,
+                "subnetwork_project": true
+              }
+            ],
+            "project": true,
+            "reservation_affinity": true,
+            "scheduling": true,
+            "scratch_disk": [],
+            "self_link": true,
+            "service_account": [],
+            "shielded_instance_config": [
+              {}
+            ],
+            "tags": [
+              false,
+              false
+            ],
+            "tags_fingerprint": true
+          },
+          "before_sensitive": {
+            "advanced_machine_features": [],
+            "attached_disk": [],
+            "boot_disk": [
+              {
+                "disk_encryption_key_raw": true,
+                "initialize_params": [
+                  {
+                    "labels": {}
+                  }
+                ]
+              }
+            ],
+            "confidential_instance_config": [],
+            "guest_accelerator": [],
+            "labels": {},
+            "metadata": {},
+            "network_interface": [
+              {
+                "access_config": [],
+                "alias_ip_range": [],
+                "ipv6_access_config": []
+              }
+            ],
+            "reservation_affinity": [],
+            "resource_policies": [],
+            "scheduling": [
+              {
+                "node_affinities": []
+              }
+            ],
+            "scratch_disk": [],
+            "service_account": [],
+            "shielded_instance_config": [
+              {}
+            ],
+            "tags": [
+              false,
+              false
+            ]
+          },
+          "after_sensitive": {
+            "advanced_machine_features": [],
+            "attached_disk": [],
+            "boot_disk": [
+              {
+                "disk_encryption_key_raw": true,
+                "initialize_params": [
+                  {
+                    "labels": {}
+                  }
+                ]
+              }
+            ],
+            "confidential_instance_config": [],
+            "guest_accelerator": [],
+            "network_interface": [
+              {
+                "access_config": [],
+                "alias_ip_range": [],
+                "ipv6_access_config": []
+              }
+            ],
+            "reservation_affinity": [],
+            "scheduling": [],
+            "scratch_disk": [],
+            "service_account": [],
+            "shielded_instance_config": [
+              {}
+            ],
+            "tags": [
+              false,
+              false
+            ]
+          },
+          "replace_paths": [
+            [
+              "name"
+            ]
+          ]
+        },
+        "action_reason": "replace_because_cannot_update"
+      },
+      {
+        "address": "google_compute_network.custom-test",
+        "mode": "managed",
+        "type": "google_compute_network",
+        "name": "custom-test",
+        "provider_name": "registry.terraform.io/hashicorp/google",
+        "change": {
+          "actions": [
+            "no-op"
+          ],
+          "before": {
+            "auto_create_subnetworks": false,
+            "delete_default_routes_on_create": false,
+            "description": "",
+            "enable_ula_internal_ipv6": false,
+            "gateway_ipv4": "",
+            "id": "projects/home-330415/global/networks/test-network",
+            "internal_ipv6_range": "",
+            "mtu": 0,
+            "name": "test-network",
+            "project": "home-330415",
+            "routing_mode": "REGIONAL",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/home-330415/global/networks/test-network",
+            "timeouts": null
+          },
+          "after": {
+            "auto_create_subnetworks": false,
+            "delete_default_routes_on_create": false,
+            "description": "",
+            "enable_ula_internal_ipv6": false,
+            "gateway_ipv4": "",
+            "id": "projects/home-330415/global/networks/test-network",
+            "internal_ipv6_range": "",
+            "mtu": 0,
+            "name": "test-network",
+            "project": "home-330415",
+            "routing_mode": "REGIONAL",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/home-330415/global/networks/test-network",
+            "timeouts": null
+          },
+          "after_unknown": {},
+          "before_sensitive": {},
+          "after_sensitive": {}
+        }
+      },
+      {
+        "address": "google_compute_subnetwork.private-subnetwork",
+        "mode": "managed",
+        "type": "google_compute_subnetwork",
+        "name": "private-subnetwork",
+        "provider_name": "registry.terraform.io/hashicorp/google",
+        "change": {
+          "actions": [
+            "no-op"
+          ],
+          "before": {
+            "creation_timestamp": "2022-12-03T15:19:39.841-08:00",
+            "description": "",
+            "external_ipv6_prefix": "",
+            "fingerprint": null,
+            "gateway_address": "10.2.0.1",
+            "id": "projects/home-330415/regions/us-central1/subnetworks/test-subnetwork",
+            "ip_cidr_range": "10.2.0.0/16",
+            "ipv6_access_type": "",
+            "ipv6_cidr_range": "",
+            "log_config": [],
+            "name": "test-subnetwork",
+            "network": "https://www.googleapis.com/compute/v1/projects/home-330415/global/networks/test-network",
+            "private_ip_google_access": false,
+            "private_ipv6_google_access": "DISABLE_GOOGLE_ACCESS",
+            "project": "home-330415",
+            "purpose": "PRIVATE",
+            "region": "us-central1",
+            "role": "",
+            "secondary_ip_range": [
+              {
+                "ip_cidr_range": "192.168.10.0/24",
+                "range_name": "tf-test-secondary-range-update1"
+              }
+            ],
+            "self_link": "https://www.googleapis.com/compute/v1/projects/home-330415/regions/us-central1/subnetworks/test-subnetwork",
+            "stack_type": "IPV4_ONLY",
+            "timeouts": null
+          },
+          "after": {
+            "creation_timestamp": "2022-12-03T15:19:39.841-08:00",
+            "description": "",
+            "external_ipv6_prefix": "",
+            "fingerprint": null,
+            "gateway_address": "10.2.0.1",
+            "id": "projects/home-330415/regions/us-central1/subnetworks/test-subnetwork",
+            "ip_cidr_range": "10.2.0.0/16",
+            "ipv6_access_type": "",
+            "ipv6_cidr_range": "",
+            "log_config": [],
+            "name": "test-subnetwork",
+            "network": "https://www.googleapis.com/compute/v1/projects/home-330415/global/networks/test-network",
+            "private_ip_google_access": false,
+            "private_ipv6_google_access": "DISABLE_GOOGLE_ACCESS",
+            "project": "home-330415",
+            "purpose": "PRIVATE",
+            "region": "us-central1",
+            "role": "",
+            "secondary_ip_range": [
+              {
+                "ip_cidr_range": "192.168.10.0/24",
+                "range_name": "tf-test-secondary-range-update1"
+              }
+            ],
+            "self_link": "https://www.googleapis.com/compute/v1/projects/home-330415/regions/us-central1/subnetworks/test-subnetwork",
+            "stack_type": "IPV4_ONLY",
+            "timeouts": null
+          },
+          "after_unknown": {},
+          "before_sensitive": {
+            "log_config": [],
+            "secondary_ip_range": [
+              {}
+            ]
+          },
+          "after_sensitive": {
+            "log_config": [],
+            "secondary_ip_range": [
+              {}
+            ]
+          }
+        }
+      }
+    ],
+    "prior_state": {
+      "format_version": "1.0",
+      "terraform_version": "1.3.4",
+      "values": {
+        "root_module": {
+          "resources": [
+            {
+              "address": "google_compute_instance.default",
+              "mode": "managed",
+              "type": "google_compute_instance",
+              "name": "default",
+              "provider_name": "registry.terraform.io/hashicorp/google",
+              "schema_version": 6,
+              "values": {
+                "advanced_machine_features": [],
+                "allow_stopping_for_update": true,
+                "attached_disk": [],
+                "boot_disk": [
+                  {
+                    "auto_delete": true,
+                    "device_name": "persistent-disk-0",
+                    "disk_encryption_key_raw": "",
+                    "disk_encryption_key_sha256": "",
+                    "initialize_params": [
+                      {
+                        "image": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-11-bullseye-v20221102",
+                        "labels": {
+                          "my_label": "value"
+                        },
+                        "size": 10,
+                        "type": "pd-standard"
+                      }
+                    ],
+                    "kms_key_self_link": "",
+                    "mode": "READ_WRITE",
+                    "source": "https://www.googleapis.com/compute/v1/projects/home-330415/zones/us-central1-a/disks/test"
+                  }
+                ],
+                "can_ip_forward": false,
+                "confidential_instance_config": [],
+                "cpu_platform": "Intel Broadwell",
+                "current_status": "RUNNING",
+                "deletion_protection": false,
+                "description": "",
+                "desired_status": null,
+                "enable_display": false,
+                "guest_accelerator": [],
+                "hostname": "",
+                "id": "projects/home-330415/zones/us-central1-a/instances/test",
+                "instance_id": "1463575062075446852",
+                "label_fingerprint": "42WmSpB8rSM=",
+                "labels": {},
+                "machine_type": "e2-medium",
+                "metadata": {},
+                "metadata_fingerprint": "ts8H3y3blXE=",
+                "metadata_startup_script": null,
+                "min_cpu_platform": "",
+                "name": "test",
+                "network_interface": [
+                  {
+                    "access_config": [],
+                    "alias_ip_range": [],
+                    "ipv6_access_config": [],
+                    "ipv6_access_type": "",
+                    "name": "nic0",
+                    "network": "https://www.googleapis.com/compute/v1/projects/home-330415/global/networks/test-network",
+                    "network_ip": "10.2.0.3",
+                    "nic_type": "",
+                    "queue_count": 0,
+                    "stack_type": "IPV4_ONLY",
+                    "subnetwork": "https://www.googleapis.com/compute/v1/projects/home-330415/regions/us-central1/subnetworks/test-subnetwork",
+                    "subnetwork_project": "home-330415"
+                  }
+                ],
+                "project": "home-330415",
+                "reservation_affinity": [],
+                "resource_policies": [],
+                "scheduling": [
+                  {
+                    "automatic_restart": true,
+                    "instance_termination_action": "",
+                    "min_node_cpus": 0,
+                    "node_affinities": [],
+                    "on_host_maintenance": "MIGRATE",
+                    "preemptible": false,
+                    "provisioning_model": "STANDARD"
+                  }
+                ],
+                "scratch_disk": [],
+                "self_link": "https://www.googleapis.com/compute/v1/projects/home-330415/zones/us-central1-a/instances/test",
+                "service_account": [],
+                "shielded_instance_config": [
+                  {
+                    "enable_integrity_monitoring": true,
+                    "enable_secure_boot": true,
+                    "enable_vtpm": true
+                  }
+                ],
+                "tags": [
+                  "bar",
+                  "foo"
+                ],
+                "tags_fingerprint": "1gqCRgrww4E=",
+                "timeouts": null,
+                "zone": "us-central1-a"
+              },
+              "sensitive_values": {
+                "advanced_machine_features": [],
+                "attached_disk": [],
+                "boot_disk": [
+                  {
+                    "initialize_params": [
+                      {
+                        "labels": {}
+                      }
+                    ]
+                  }
+                ],
+                "confidential_instance_config": [],
+                "guest_accelerator": [],
+                "labels": {},
+                "metadata": {},
+                "network_interface": [
+                  {
+                    "access_config": [],
+                    "alias_ip_range": [],
+                    "ipv6_access_config": []
+                  }
+                ],
+                "reservation_affinity": [],
+                "resource_policies": [],
+                "scheduling": [
+                  {
+                    "node_affinities": []
+                  }
+                ],
+                "scratch_disk": [],
+                "service_account": [],
+                "shielded_instance_config": [
+                  {}
+                ],
+                "tags": [
+                  false,
+                  false
+                ]
+              },
+              "depends_on": [
+                "google_compute_network.custom-test",
+                "google_compute_subnetwork.private-subnetwork"
+              ]
+            },
+            {
+              "address": "google_compute_network.custom-test",
+              "mode": "managed",
+              "type": "google_compute_network",
+              "name": "custom-test",
+              "provider_name": "registry.terraform.io/hashicorp/google",
+              "schema_version": 0,
+              "values": {
+                "auto_create_subnetworks": false,
+                "delete_default_routes_on_create": false,
+                "description": "",
+                "enable_ula_internal_ipv6": false,
+                "gateway_ipv4": "",
+                "id": "projects/home-330415/global/networks/test-network",
+                "internal_ipv6_range": "",
+                "mtu": 0,
+                "name": "test-network",
+                "project": "home-330415",
+                "routing_mode": "REGIONAL",
+                "self_link": "https://www.googleapis.com/compute/v1/projects/home-330415/global/networks/test-network",
+                "timeouts": null
+              },
+              "sensitive_values": {}
+            },
+            {
+              "address": "google_compute_subnetwork.private-subnetwork",
+              "mode": "managed",
+              "type": "google_compute_subnetwork",
+              "name": "private-subnetwork",
+              "provider_name": "registry.terraform.io/hashicorp/google",
+              "schema_version": 0,
+              "values": {
+                "creation_timestamp": "2022-12-03T15:19:39.841-08:00",
+                "description": "",
+                "external_ipv6_prefix": "",
+                "fingerprint": null,
+                "gateway_address": "10.2.0.1",
+                "id": "projects/home-330415/regions/us-central1/subnetworks/test-subnetwork",
+                "ip_cidr_range": "10.2.0.0/16",
+                "ipv6_access_type": "",
+                "ipv6_cidr_range": "",
+                "log_config": [],
+                "name": "test-subnetwork",
+                "network": "https://www.googleapis.com/compute/v1/projects/home-330415/global/networks/test-network",
+                "private_ip_google_access": false,
+                "private_ipv6_google_access": "DISABLE_GOOGLE_ACCESS",
+                "project": "home-330415",
+                "purpose": "PRIVATE",
+                "region": "us-central1",
+                "role": "",
+                "secondary_ip_range": [
+                  {
+                    "ip_cidr_range": "192.168.10.0/24",
+                    "range_name": "tf-test-secondary-range-update1"
+                  }
+                ],
+                "self_link": "https://www.googleapis.com/compute/v1/projects/home-330415/regions/us-central1/subnetworks/test-subnetwork",
+                "stack_type": "IPV4_ONLY",
+                "timeouts": null
+              },
+              "sensitive_values": {
+                "log_config": [],
+                "secondary_ip_range": [
+                  {}
+                ]
+              },
+              "depends_on": [
+                "google_compute_network.custom-test"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "configuration": {
+      "provider_config": {
+        "google": {
+          "name": "google",
+          "full_name": "registry.terraform.io/hashicorp/google",
+          "expressions": {
+            "project": {
+              "references": [
+                "var.project_id"
+              ]
+            },
+            "region": {
+              "constant_value": "us-central1"
+            }
+          }
+        }
+      },
+      "root_module": {
+        "resources": [
+          {
+            "address": "google_compute_instance.default",
+            "mode": "managed",
+            "type": "google_compute_instance",
+            "name": "default",
+            "provider_config_key": "google",
+            "expressions": {
+              "allow_stopping_for_update": {
+                "constant_value": true
+              },
+              "boot_disk": [
+                {
+                  "initialize_params": [
+                    {
+                      "image": {
+                        "constant_value": "debian-cloud/debian-11"
+                      },
+                      "labels": {
+                        "constant_value": {
+                          "my_label": "value"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ],
+              "machine_type": {
+                "constant_value": "e2-medium"
+              },
+              "name": {
+                "constant_value": "test2"
+              },
+              "network_interface": [
+                {
+                  "subnetwork": {
+                    "references": [
+                      "google_compute_subnetwork.private-subnetwork.id",
+                      "google_compute_subnetwork.private-subnetwork"
+                    ]
+                  }
+                }
+              ],
+              "shielded_instance_config": [
+                {
+                  "enable_integrity_monitoring": {
+                    "constant_value": false
+                  },
+                  "enable_secure_boot": {
+                    "constant_value": false
+                  },
+                  "enable_vtpm": {
+                    "constant_value": false
+                  }
+                }
+              ],
+              "tags": {
+                "constant_value": [
+                  "foo",
+                  "bar"
+                ]
+              },
+              "zone": {
+                "constant_value": "us-central1-a"
+              }
+            },
+            "schema_version": 6
+          },
+          {
+            "address": "google_compute_network.custom-test",
+            "mode": "managed",
+            "type": "google_compute_network",
+            "name": "custom-test",
+            "provider_config_key": "google",
+            "expressions": {
+              "auto_create_subnetworks": {
+                "constant_value": false
+              },
+              "name": {
+                "constant_value": "test-network"
+              }
+            },
+            "schema_version": 0
+          },
+          {
+            "address": "google_compute_subnetwork.private-subnetwork",
+            "mode": "managed",
+            "type": "google_compute_subnetwork",
+            "name": "private-subnetwork",
+            "provider_config_key": "google",
+            "expressions": {
+              "ip_cidr_range": {
+                "constant_value": "10.2.0.0/16"
+              },
+              "name": {
+                "constant_value": "test-subnetwork"
+              },
+              "network": {
+                "references": [
+                  "google_compute_network.custom-test.id",
+                  "google_compute_network.custom-test"
+                ]
+              },
+              "region": {
+                "constant_value": "us-central1"
+              },
+              "secondary_ip_range": {
+                "constant_value": [
+                  {
+                    "ip_cidr_range": "192.168.10.0/24",
+                    "range_name": "tf-test-secondary-range-update1"
+                  }
+                ]
+              }
+            },
+            "schema_version": 0
+          }
+        ],
+        "variables": {
+          "project_id": {
+            "default": "home-330415",
+            "description": "Project that will have resources meeting compliance requirements."
+          }
+        }
+      }
+    },
+    "relevant_attributes": [
+      {
+        "resource": "google_compute_subnetwork.private-subnetwork",
+        "attribute": [
+          "id"
+        ]
+      }
+    ]
+  }
