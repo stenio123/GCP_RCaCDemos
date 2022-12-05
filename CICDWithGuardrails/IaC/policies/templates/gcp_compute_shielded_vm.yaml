@@ -72,10 +72,10 @@ spec:
             	asset := input.asset
             	asset.asset_type == "compute.googleapis.com/Instance"
             
-            	instance := asset.resource.data
-            	lib.get_default(instance, "enable_secure_boot", true) == true
-	            lib.get_default(instance, "enable_vtpm", true) == true
-	            lib.get_default(instance, "enable_integrity_monitoring", true) == true
+              instance := asset.resource.data
+              lib.get_default(instance, "enable_secure_boot", true) == true
+              lib.get_default(instance, "enable_vtpm", true) == true
+              lib.get_default(instance, "enable_integrity_monitoring", true) == true
             
             	# Check if instance is in denylist/allowlist
             	match_mode := lib.get_default(params, "match_mode", "exact")
