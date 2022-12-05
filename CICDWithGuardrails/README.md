@@ -42,9 +42,23 @@ chmod 755 ./opa
 terraform init
 terraform plan --out tfplan.binary
 terraform show -json tfplan.binary > tfplan.json
+gcloud beta terraform vet tfplan.json --policy-library=. --format=json
 opa exec --decision terraform/analysis/authz --bundle policy/ tfplan.json
 
 ```
+## BUGS
+- Shielded VM rego errors if network doesnt exist prior to execution (day 0):
+```
+s@cloudshell:~/cicd333/CICDWithGuardrails/IaC (home-330415)$ gcloud beta terraform vet tfplan.json --policy-library=. --format=json                                       
+ERROR: [google_compute_instance.default: converting TF resource to CAI: Error creating network interfaces: exactly one of network or subnetwork must be provided]. Additional details: [terraform-validator-internal.git.corp.google.com/terraform-tools.git/cmd.Execute
+        /tmpfs/src/git/terraform-tools/cmd/root.go:92
+main.main
+        /tmpfs/src/git/terraform-tools/main.go:16
+runtime.main
+        /usr/local/go/src/runtime/proc.go:250]
+[]
+```
+Temporary solution - comment out vm, execute terraform to create network fist, generate tfplan.json
 
 ## Improvements needed
 - Store state of CICD pipeline
