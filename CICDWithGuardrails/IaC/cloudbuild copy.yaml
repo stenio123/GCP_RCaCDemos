@@ -26,6 +26,7 @@ steps:
       cd CICDWithGuardrails/IaC
       terraform plan --out tfplan.binary
       terraform show -json tfplan.binary > tfplan.json
+     # cd ../..
 # [END tf-plan]
 # [START guardrails]
 - id: 'guardrails'
@@ -59,6 +60,7 @@ steps:
       echo "*************************************************"
       echo "current dir: `pwd`"
       echo "contents dir: `ls`"
+    #  cd CICDWithGuardrails/IaC
       terraform apply -auto-approve
       cd ../..
 # [END tf-apply] 
