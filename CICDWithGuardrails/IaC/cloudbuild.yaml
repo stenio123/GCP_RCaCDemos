@@ -26,6 +26,8 @@ steps:
       cd CICDWithGuardrails/IaC
       terraform plan --out tfplan.binary
       terraform show -json tfplan.binary > tfplan.json
+      echo "current dir: `pwd`"
+      echo "contents dir: `ls`"
      # cd ../..
 # [END tf-plan]
 # [START guardrails]
