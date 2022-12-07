@@ -34,7 +34,7 @@ steps:
   #name: 'hashicorp/terraform:1.3.5'
   #entrypoint: 'sh'
   args: 
-  - eval 'data.terraform.deny[x]' --data policies/ --input tfplan.json --format raw
+  - ./opa eval 'data.terraform.deny[x]' --data policies/ --input tfplan.json --format raw
   #- '-c'
   #- | 
   #    echo "*************** GUARDRAILS - OPA ******************"
