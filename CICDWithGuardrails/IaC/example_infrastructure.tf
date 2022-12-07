@@ -75,5 +75,6 @@ resource "google_storage_bucket" "default" {
 resource "google_storage_bucket_acl" "image-store-acl" {
   bucket = google_storage_bucket.default.name
 
-  predefined_acl = "publicRead"
+  predefined_acl = "private"
+  #predefined_acl = "publicRead"
 }
