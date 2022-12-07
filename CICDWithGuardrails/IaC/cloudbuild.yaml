@@ -44,9 +44,9 @@ steps:
       cd CICDWithGuardrails/IaC
       wget -O opa https://openpolicyagent.org/downloads/v0.47.0/opa_linux_amd64_static
       chmod 755 ./opa
-      result = `./opa eval 'data.terraform.deny[x]' --data policies/ --input tfplan.json --format raw`
+      result=`./opa eval 'data.terraform.deny[x]' --data policies/ --input tfplan.json --format raw`
       echo $result
-      [[ ! -z "$result" ]] && echo "OPA Policy check fail, exiting ..." ; exit 1 || echo "Empty"
+      [[ ! -z "$result" ]] && echo "Security Policy check fail, exiting ..." ; exit 1 || echo "Security Policy passed. Continuing ..."
       cd ../..
 # [END guardrails]
 
