@@ -71,6 +71,7 @@ steps:
       echo "*************************************************"
       echo "current dir: `pwd`"
       echo "contents dir: `ls`"
+      cd CICDWithGuardrails/IaC
       terraform apply -auto-approve
       cd ../..
 # [END tf-apply] 
