@@ -47,7 +47,7 @@ steps:
       result=`./opa eval 'data.terraform.deny[x]' --data policies/ --input tfplan.json --format raw`
       echo "Policy eval result:"
       echo $result
-      if [[ ! -z $result ]]
+      if [[ ! -z "$result" ]]
         then
           echo "Security Policy check fail, exiting ..."
           exit 1
