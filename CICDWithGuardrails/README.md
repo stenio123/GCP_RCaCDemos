@@ -38,6 +38,7 @@ For convenience, in this demo both the code to configure the CICD and the deploy
 ```
 sudo apt-get install google-cloud-sdk-terraform-tools
 curl -L -o opa https://openpolicyagent.org/downloads/v0.47.0/opa_linux_amd64_static
+wget -O opa curl -L -o opa https://openpolicyagent.org/downloads/v0.47.0/opa_linux_amd64_static
 chmod 755 ./opa
 terraform init
 terraform plan --out tfplan.binary
