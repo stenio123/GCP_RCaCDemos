@@ -45,11 +45,14 @@ steps:
       wget -O opa https://openpolicyagent.org/downloads/v0.47.0/opa_linux_amd64_static
       chmod 755 ./opa
       result=`./opa eval 'data.terraform.deny[x]' --data policies/ --input tfplan.json --format raw`
-      echo "Policy eval result:"
       echo $result
       if [[ ! -z "$result" ]]
         then
-          echo "Security Policy check fail, exiting ..."
+          echo "*************** SECURITY POLICY CHECK FAIL ******************"
+          echo "*************************************************************"
+          echo "Security Policy check fail:"
+          echo $result 
+          echo "Exiting ..."
           exit 1
         else
           echo "Security Policy passed. Continuing ..."
