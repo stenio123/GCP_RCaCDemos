@@ -31,7 +31,7 @@ steps:
 # [START tf-plan]
 - id: 'guardrails'
   name: 'openpolicyagent/opa:0.47.1-static'
-  entrypoint: 'sh'
+  entrypoint: '/opa'
   args: 
   - '-c'
   - | 
