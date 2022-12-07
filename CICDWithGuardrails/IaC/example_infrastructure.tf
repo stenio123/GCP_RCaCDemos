@@ -60,3 +60,20 @@ resource "google_compute_network" "custom-test" {
   name                    = "test-network"
   auto_create_subnetworks = false
 }
+
+resource "random_id" "id" {
+	  byte_length = 4
+}
+
+resource "google_storage_bucket" "default" {
+  name          = "rcac-demo-${random_id.id.hex}"
+  force_destroy = false
+  location      = "US"
+  storage_class = "STANDARD"
+}
+
+resource "google_storage_bucket_acl" "image-store-acl" {
+  bucket = google_storage_bucket.default.name
+
+  predefined_acl = "publicRead"
+}

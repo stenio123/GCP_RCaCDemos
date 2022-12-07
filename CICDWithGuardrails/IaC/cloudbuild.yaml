@@ -24,7 +24,23 @@ steps:
       echo "current dir: `pwd`"
       echo "contents dir: `ls`"
       cd CICDWithGuardrails/IaC
-      terraform plan 
+      terraform plan --out tfplan.binary
+      terraform show -json tfplan.binary > tfplan.json
+      cd ../..
+# [END tf-plan]
+# [START tf-plan]
+- id: 'tf plan'
+  name: 'openpolicyagent/opa:0.47.1-static'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+      echo "*************** GUARDRAILS - OPA ******************"
+      echo "*************************************************"
+      echo "current dir: `pwd`"
+      echo "contents dir: `ls`"
+      cd CICDWithGuardrails/IaC
+      ./opa eval 'data.terraform.deny[x]' --data policies/ --input tfplan.json --format raw
       cd ../..
 # [END tf-plan]
 

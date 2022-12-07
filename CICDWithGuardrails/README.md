@@ -45,6 +45,8 @@ terraform show -json tfplan.binary > tfplan.json
 gcloud beta terraform vet tfplan.json --policy-library=. --format=json
 opa exec --decision terraform/analysis/authz --bundle policy/ tfplan.json
 
+
+./opa eval 'data.terraform.deny[x]' --data policy/ --input tfplan_fix.json --format raw
 ```
 ## BUGS
 - Shielded VM rego errors if network doesnt exist prior to execution (day 0):
