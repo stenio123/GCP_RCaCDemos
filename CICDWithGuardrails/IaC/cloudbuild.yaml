@@ -49,8 +49,6 @@ steps:
       echo $result
       if [[ ! -z $result ]]
         then
-          echo "*************** SECURITY POLICY VIOLATION ***************"
-          echo "*********************************************************"
           echo "Security Policy check fail, exiting ..."
           exit 1
         else
