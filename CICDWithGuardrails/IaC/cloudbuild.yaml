@@ -46,7 +46,13 @@ steps:
       chmod 755 ./opa
       result=`./opa eval 'data.terraform.deny[x]' --data policies/ --input tfplan.json --format raw`
       echo $result
-      [[ ! -z "$result" ]] && echo "Security Policy check fail, exiting ..." ; exit 1 || echo "Security Policy passed. Continuing ..."
+      if [[ ! -z $result ]]
+        then
+          echo "Security Policy check fail, exiting ..."
+          exit 1
+        else
+          echo "Security Policy passed. Continuing ..."
+      fi
       cd ../..
 # [END guardrails]
 
