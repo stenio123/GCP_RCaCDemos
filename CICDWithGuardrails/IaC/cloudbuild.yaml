@@ -29,7 +29,7 @@ steps:
       cd ../..
 # [END tf-plan]
 # [START tf-plan]
-- id: 'tf plan'
+- id: 'guardrails'
   name: 'openpolicyagent/opa:0.47.1-static'
   entrypoint: 'sh'
   args: 
