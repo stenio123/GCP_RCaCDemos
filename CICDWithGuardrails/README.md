@@ -4,7 +4,7 @@
 ## Overview
 This demo has two main components - the GCP side and the Github side. **GCP** will be responsible for the CICD and guardrail automation, using CloudBuild and Cloudfunction, while **Github** will be responsible for storing the IaC and guardrail controls. 
 
-For convenience, in this demo both the code to configure the CICD and the deployed infrastructure are in the same git repository. In real world settings, one would probably have two separate git repos. The IaC code is found in the "IaC" folder, and it is referred in cicd.tf. You can find examples of how to point to a remote cloudbuild.yaml [here](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloudbuild_trigger#example-usage---cloudbuild-trigger-pubsub-config)
+For convenience, in this demo both the code to configure the CICD and the deployed infrastructure are in the same git repository. In real world settings, one would probably have two separate git repos. The IaC code is found in the "IaC" folder, and it is referred in cicd.tf. You can find examples of how to point to a remote github repo on cloudbuild.yaml [here](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloudbuild_trigger#example-usage---cloudbuild-trigger-pubsub-config)
 
 
 ## Steps to deploy demo:
@@ -23,49 +23,26 @@ For convenience, in this demo both the code to configure the CICD and the deploy
 ### Deploy CICD pipeline
 - Update CICDWithGuardrails/cicd.tf to point to your forked git repo 
 - On GCP console, execute `terraform init; terraform apply`
-- To trigger IaC build, make a change to a branch of IaC, push and merge to main.
+- To trigger IaC build, make a change to a branch of IaC, push to git (and merge if not main branch)
+- For example, remove comments to deploy, add comments to destroy
 
 ### Destroying infrastructure
-- To destroy IaC, comment all code, push and merge
+- To destroy IaC, comment all code, push (and merge if not main branch)
 - To destroy CICD pipeline, on GCP console execute `terraform destroy`
-.
 
 ## Notes
-- Cloud Build IAM permissions are controle through [Cloud Build Service Account](https://cloud.google.com/build/docs/securing-builds/configure-access-for-cloud-build-service-account?_ga=2.239260227.-1197172919.1670105530)
+- Cloud Build IAM permissions are controled through [Cloud Build Service Account](https://cloud.google.com/build/docs/securing-builds/configure-access-for-cloud-build-service-account?_ga=2.239260227.-1197172919.1670105530)
 - Github is used as the source control in this demo, but any git repository supported by Cloud build should work
 
 ### Creating and testing new policies
-```
-sudo apt-get install google-cloud-sdk-terraform-tools
-curl -L -o opa https://openpolicyagent.org/downloads/v0.47.0/opa_linux_amd64_static
-wget -O opa curl -L -o opa https://openpolicyagent.org/downloads/v0.47.0/opa_linux_amd64_static
-chmod 755 ./opa
-terraform init
-terraform plan --out tfplan.binary
-terraform show -json tfplan.binary > tfplan.json
-gcloud beta terraform vet tfplan.json --policy-library=. --format=json
-opa exec --decision terraform/analysis/authz --bundle policy/ tfplan.json
+Check the [IaC/policies](IaC/policies) folder
 
-
-./opa eval 'data.terraform.deny[x]' --data policy/ --input tfplan_fix.json --format raw
-```
-## BUGS
-- Shielded VM rego errors if network doesnt exist prior to execution (day 0):
-```
-s@cloudshell:~/cicd333/CICDWithGuardrails/IaC (home-330415)$ gcloud beta terraform vet tfplan.json --policy-library=. --format=json                                       
-ERROR: [google_compute_instance.default: converting TF resource to CAI: Error creating network interfaces: exactly one of network or subnetwork must be provided]. Additional details: [terraform-validator-internal.git.corp.google.com/terraform-tools.git/cmd.Execute
-        /tmpfs/src/git/terraform-tools/cmd/root.go:92
-main.main
-        /tmpfs/src/git/terraform-tools/main.go:16
-runtime.main
-        /usr/local/go/src/runtime/proc.go:250]
-[]
-```
-Temporary solution - comment out vm, execute terraform to create network fist, generate tfplan.json
-
-## Improvements needed
+## TODO
+- Example of cloudbuild jobs with different service accounts and limited permissions
+- IaC/cloudbuild.yaml uses terraform apply on the tfplan file
 - Store state of CICD pipeline
 - Pass IaC state bucket name as env var through CICD Cloud Build
+- Documentation on pointing to branches other than main (PR, review, merge)
 
 ## Troubleshooting
 
