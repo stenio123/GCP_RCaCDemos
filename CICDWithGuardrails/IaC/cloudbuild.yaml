@@ -32,7 +32,8 @@ steps:
 - id: 'guardrails'
   name: 'openpolicyagent/opa:0.47.1-static'
   args:
-  - eval
+  - eval 
+  - 'data.terraform.deny[x]'
   - --data
   - policies/
   - --input
