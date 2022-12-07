@@ -28,10 +28,12 @@ steps:
       terraform show -json tfplan.binary > tfplan.json
       cd ../..
 # [END tf-plan]
-# [START tf-plan]
+# [START guardrails]
 - id: 'guardrails'
-  name: 'openpolicyagent/opa:0.47.1-static'
-  entrypoint: '/opa'
+  #name: 'openpolicyagent/opa:0.47.1-static'
+  #entrypoint: '/opa'
+  name: 'hashicorp/terraform:1.3.5'
+  entrypoint: 'sh'
   args: 
   - '-c'
   - | 
@@ -40,9 +42,11 @@ steps:
       echo "current dir: `pwd`"
       echo "contents dir: `ls`"
       cd CICDWithGuardrails/IaC
+      curl -L -o opa https://openpolicyagent.org/downloads/v0.47.0/opa_linux_amd64_static
+      chmod 755 ./opa
       ./opa eval 'data.terraform.deny[x]' --data policies/ --input tfplan.json --format raw
       cd ../..
-# [END tf-plan]
+# [END guardrails]
 
 # [START tf-apply]
 - id: 'tf apply'
