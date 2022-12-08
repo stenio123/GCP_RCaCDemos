@@ -1,10 +1,14 @@
 
 # Demo - IaC CICD with Guardrails
 
-## Overview
-This demo has two main components - the GCP side and the Github side. **GCP** will be responsible for the CICD and guardrail automation, using CloudBuild and Cloudfunction, while **Github** will be responsible for storing the IaC and guardrail controls. 
+![CICDDemo](CICDDemo.png)
 
-For convenience, in this demo both the code to configure the CICD and the deployed infrastructure are in the same git repository. In real world settings, one would probably have two separate git repos. The IaC code is found in the "IaC" folder, and it is referred in cicd.tf. You can find examples of how to point to a remote github repo on cloudbuild.yaml [here](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloudbuild_trigger#example-usage---cloudbuild-trigger-pubsub-config)
+## Overview
+This demo has two main components - the GCP side and the Github side. **GCP** will be responsible for the CICD and guardrail automation, using CloudBuild and Cloudfunction, while **Github** will be responsible for storing the IaC and guardrail controls.
+
+The above diagram presents the proposed end state. For simplicity, in this demo all three git repositories presented - the code to configure the CICD, the deployed infrastructure, and the policies are in the same git repository. In real world settings, one would probably have three or more separate git repos. Multiple IaC repositories can be supported, each one with its own Cloud Build Trigger and associated service account. 
+
+The IaC code is found in the "IaC" folder, and it is referred in cicd.tf. You can find examples of how to point to a remote github repo on cloudbuild.yaml [here](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloudbuild_trigger#example-usage---cloudbuild-trigger-pubsub-config)
 
 
 ## Steps to deploy demo:
