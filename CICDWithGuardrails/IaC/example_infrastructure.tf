@@ -13,7 +13,7 @@ provider "google" {
   project = var.project_id
   region  = "us-central1"
 }
-/**
+
 ## Simple VM. 
 resource "google_compute_instance" "default" {
   name         = "test"
@@ -75,6 +75,6 @@ resource "google_storage_bucket" "default" {
 resource "google_storage_bucket_acl" "image-store-acl" {
   bucket = google_storage_bucket.default.name
 
-  predefined_acl = "private"
-  #predefined_acl = "publicRead"
-}*/
+  #predefined_acl = "private"
+  predefined_acl = "publicRead"
+}
